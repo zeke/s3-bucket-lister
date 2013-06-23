@@ -30,9 +30,11 @@ in a format like this:
 
 ## Deploying to Heroku
 
-Assuming you've got a `.env` file set up to run locally:
+Assuming you've added your S3 credentials to `.env` per the development
+instructions above, then:
 
     heroku create my-bucket-list
     git push heroku master
     heroku plugins:install git://github.com/ddollar/heroku-config.git
     heroku config:push -a my-bucket-list
+    open https://my-bucket-list.herokuapp.com/some-bucket
