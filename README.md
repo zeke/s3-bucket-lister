@@ -17,13 +17,13 @@ in a format like this:
 ```json
 [
   {
-    filename: "app.json",
-    encodedFilename: "app.json",
-    url: "http://loafer.s3.amazonaws.com/app.json"
+    "filename": "app.json",
+    "encodedFilename": "app.json",
+    "url": "http://loafer.s3.amazonaws.com/app.json"
   },{
-    filename: "index.html",
-    encodedFilename: "index.html",
-  url: "http://loafer.s3.amazonaws.com/index.html"
+    "filename": "index.html",
+    "encodedFilename": "index.html",
+    "url": "http://loafer.s3.amazonaws.com/index.html"
   }
 ]
 ```
