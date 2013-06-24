@@ -1,29 +1,42 @@
-amazonS3  = require("awssum-amazon-s3")
-urlencode = require("urlencode")
-express   = require("express")
-cors      = require("cors")
-qs        = require("querystring")
+BucketList  = require("bucket-list")
+urlencode   = require("urlencode")
+express     = require("express")
+cors        = require("cors")
+minimatch   = require("minimatch")
 
 app = express()
-app.use express.bodyParser()
 app.use app.router
+
+app.get "/", cors(), (req, res) ->
+  res.jsonp(400, {error: "Specify a bucket as the base path, e.g. /my-bucket"})
 
 app.get "/:bucket", cors(), (req, res) ->
 
-  s3 = new amazonS3.S3
-    accessKeyId: req.query.key || process.env.AWS_ACCESS_KEY
-    secretAccessKey: req.query.secret || process.env.AWS_SECRET_KEY
-    region: amazonS3.US_EAST_1
+  bucket = BucketList.connect
+    key: req.query.key || process.env.AWS_ACCESS_KEY
+    secret: req.query.secret || process.env.AWS_SECRET_KEY
+    bucket: req.params.bucket
 
-  s3.ListObjects {BucketName: req.params.bucket}, (err, data) ->
+  # bucketStream = bucket("folder_name")
+  # bucketStream.on "data", (fileNameWithPath) ->
+  #   console.log fileNameWithPath
+
+  bucket "", (err, files) ->
     return res.jsonp(400, {error: err}) if err
     out = []
-    for file in data.Body.ListBucketResult.Contents
+    for file in files
+
+      # Skip files that don't match the given pattern
+      continue if req.query.pattern && !minimatch(file, req.query.pattern)
+
       out.push
-        filename: file.Key
-        encodedFilename: urlencode(file.Key)
-        url: "http://#{req.params.bucket}.s3.amazonaws.com/#{urlencode(file.Key)}"
+        filename: file
+        filenameEncoded: urlencode(file)
+        url: "https://#{req.params.bucket}.s3.amazonaws.com/#{urlencode(file)}"
 
     res.jsonp(out)
 
 module.exports = app
+
+
+

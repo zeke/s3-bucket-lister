@@ -9,6 +9,8 @@
     "urlencode": "0.0.1",
     "coffee-script": "*",
     "express": "~3.2.6",
-    "cors": "~1.0.1"
+    "cors": "~1.0.1",
+    "bucket-list": "~0.3.2",
+    "minimatch": "~0.2.12"
   }
 }

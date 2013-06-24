@@ -22,6 +22,13 @@ $.getJSON("https://s3-bucket-lister.herokuapp.com/loafer/"+bucket, function(file
 });
 ```
 
+## Patterns
+
+You can use [glob expressions](https://npmjs.org/package/minimatch) to limit the result set
+to filenames that match a specific pattern:
+
+[/mix.joe.sikelianos.com?pattern=songs/*](https://s3-bucket-lister.herokuapp.com/mix.joe.sikelianos.com?pattern=songs/*)
+
 ## AWS Credentials
 
 If no AWS credentials are included with your request, then the app's `AWS_ACCESS_KEY` and `AWS_SECRET_KEY` environment variables are used to fulfill the request. You can override
