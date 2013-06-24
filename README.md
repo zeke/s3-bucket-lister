@@ -1,6 +1,26 @@
-# CORS Bucket List
+# S3 Bucket Lister
 
-CORS Bucket List is a small Node.js webservice for fetching S3 bucket contents as JSON.
+A CORS-friendly webservice for fetching S3 bucket contents as JSON(P).
+
+## Usage
+
+Various ways to get a file listing for bucket `loafer`:
+
+Browser:
+[s3-bucket-lister.herokuapp.com/loafer](https://s3-bucket-lister.herokuapp.com/loafer)
+
+Shell:
+```sh
+curl -H "Content-Type: application/json" https://s3-bucket-lister.herokuapp.com/loafer
+```
+
+jQuery:
+```js
+var bucket = "loafer";
+$.getJSON("https://s3-bucket-lister.herokuapp.com/loafer/"+bucket, function(files) {
+  console.log(files);
+});
+```
 
 ## Development Setup
 
