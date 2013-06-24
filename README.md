@@ -1,10 +1,10 @@
-AWS Identity and Access Management (IAM) enables you to create multiple users within your AWS account,# S3 Bucket Lister
+# S3 Bucket Lister
 
 A CORS-friendly webservice for fetching S3 bucket contents as JSON(P).
 
 ## Usage
 
-Here are a few ways to get a file listing for bucket `loafer`:
+Here are a few ways to get a file listing for a bucket name "loafer":
 
 Browser:<br>
 [s3-bucket-lister.herokuapp.com/loafer](https://s3-bucket-lister.herokuapp.com/loafer)
@@ -24,11 +24,10 @@ $.getJSON("https://s3-bucket-lister.herokuapp.com/loafer/"+bucket, function(file
 
 ## AWS Credentials
 
-If no AWS credentials are included with your request, then the app's environment variables
-`AWS_ACCESS_KEY` and `AWS_SECRET_KEY` are used to fulfill the request. You can override
+If no AWS credentials are included with your request, then the app's `AWS_ACCESS_KEY` and `AWS_SECRET_KEY` environment variables are used to fulfill the request. You can override
 this default by passing in your own key and secret as query parameters:
 
-s3-bucket-lister.herokuapp.com/nether-bucket?key=AKIAJRC74QAUTBQQ5BTA&secret=yfk1aVb/s/txkA2atOJH0pmIGnEz4Pv/glqH4SUv
+[/nether-bucket?key=AKIAJRC74QAUTBQQ5BTA&secret=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](https://s3-bucket-lister.herokuapp.com/nether-bucket?key=AKIAJRC74QAUTBQQ5BTA&secret=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)
 
 Amazon's [Identity and Access Management (IAM)](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingIAMPolicies.html) enables you to create multiple users within your AWS account. I recommend creating a user with *read-only* privileges to your account's buckets.
 
