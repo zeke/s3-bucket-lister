@@ -24,16 +24,17 @@ app.get "/:bucket", cors(), (req, res) ->
   bucket "", (err, files) ->
     return res.jsonp(400, {error: err}) if err
     out = []
-    for file in files
+    for filename in files
 
       # Skip files that don't match the given pattern
-      continue if req.query.pattern && !minimatch(file, req.query.pattern)
+      continue if req.query.pattern && !minimatch(filename, req.query.pattern)
+
+      # url encode everything but slashes
+      filenameEncoded = encodeURIComponent(filename).replace("%2F", "/")
 
       out.push
-        filename: file
-        filenameEncoded: urlencode(file)
-        url: "http://#{req.params.bucket}.s3.amazonaws.com/#{urlencode(file)}"
-        vanityUrl: "http://#{req.params.bucket}/#{urlencode(file)}"
+        url: "http://#{req.params.bucket}.s3.amazonaws.com/#{filenameEncoded}"
+        vanityUrl: "http://#{req.params.bucket}/#{filenameEncoded}"
 
     res.jsonp(out)
 
