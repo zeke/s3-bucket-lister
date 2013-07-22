@@ -32,7 +32,8 @@ app.get "/:bucket", cors(), (req, res) ->
       out.push
         filename: file
         filenameEncoded: urlencode(file)
-        url: "https://#{req.params.bucket}.s3.amazonaws.com/#{urlencode(file)}"
+        url: "http://#{req.params.bucket}.s3.amazonaws.com/#{urlencode(file)}"
+        vanityUrl: "http://#{req.params.bucket}/#{urlencode(file)}"
 
     res.jsonp(out)
 

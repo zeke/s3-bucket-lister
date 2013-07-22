@@ -17,7 +17,7 @@ curl -H "Content-Type: application/json" https://s3-bucket-lister.herokuapp.com/
 jQuery:
 ```js
 var bucket = "loafer";
-$.getJSON("https://s3-bucket-lister.herokuapp.com/loafer/"+bucket, function(files) {
+$.getJSON("https://s3-bucket-lister.herokuapp.com/"+bucket, function(files) {
   console.log(files);
 });
 ```
