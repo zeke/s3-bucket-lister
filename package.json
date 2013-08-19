@@ -6,7 +6,6 @@
     "awssum": "~1.0.0",
     "awssum-amazon": "~1.0.2",
     "awssum-amazon-s3": "~1.2.4",
-    "urlencode": "0.0.1",
     "coffee-script": "*",
     "express": "~3.2.6",
     "cors": "~1.0.1",

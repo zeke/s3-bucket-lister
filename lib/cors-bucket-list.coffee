@@ -1,5 +1,4 @@
 BucketList  = require("bucket-list")
-urlencode   = require("urlencode")
 express     = require("express")
 cors        = require("cors")
 minimatch   = require("minimatch")
